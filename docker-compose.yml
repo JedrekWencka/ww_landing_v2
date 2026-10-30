@@ -1,0 +1,12 @@
+# Preview of the redesign: a second nginx next to the live site, on its own port.
+# Live site (ww-landing) keeps ports 80/443 untouched.
+services:
+  web:
+    image: nginx:1.27-alpine
+    container_name: ww-preview
+    restart: unless-stopped
+    ports:
+      - "8081:80"
+    volumes:
+      - ./dist:/usr/share/nginx/html:ro
+      - ./nginx:/etc/nginx/conf.d:ro
