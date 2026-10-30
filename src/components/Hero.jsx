@@ -9,7 +9,7 @@ export default function Hero({ t }) {
       <div className="hero-left">
         <div className="hero-brand">
           <h1>
-            <img src="/wordmark.png" width="1408" height="209" alt={t.hero.wordmarkAlt} />
+            <img src="/wordmark.png" width="1408" height="221" alt={t.hero.wordmarkAlt} />
           </h1>
           <a className="pill pill-solid" href={LINKS.album} target="_blank" rel="noopener noreferrer">
             {t.hero.pill}

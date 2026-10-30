@@ -6,7 +6,7 @@ Run from the project root:  python3 scripts/make-brand-assets.py
 from PIL import Image
 import numpy as np
 
-# --- single-line wordmark from the stacked WHITE / WATER logo
+# --- single-line wordmark (one word) from the stacked WHITE / WATER logo
 src = Image.open("logo/WHITEWATER - AFTERLIFE (2).jpg").convert("RGB")
 alpha = np.clip((np.asarray(src).astype(float)[:, :, 2] / 255.0 - 0.08) / 0.6, 0, 1)
 rows = (alpha > 0.3).sum(axis=1)
@@ -26,7 +26,7 @@ def line(a, b):
 
 l1, l2 = line(y0, gap), line(gap, y1 + 1)
 h = max(l1.shape[0], l2.shape[0])
-gapw = int(h * 0.45)
+gapw = int(h * 0.075)  # normal letter spacing: WHITE + WATER read as one word
 canvas = np.zeros((h, l1.shape[1] + gapw + l2.shape[1]))
 canvas[(h - l1.shape[0]) // 2:(h - l1.shape[0]) // 2 + l1.shape[0], : l1.shape[1]] = l1
 canvas[(h - l2.shape[0]) // 2:(h - l2.shape[0]) // 2 + l2.shape[0], l1.shape[1] + gapw:] = l2
