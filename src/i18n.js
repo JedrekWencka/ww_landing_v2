@@ -87,6 +87,8 @@ const en = {
     bandTitle: "Band photos",
     bandCopy: "WHITEWATER as a four-piece — live, in the room, and in stills.",
     open: "View",
+    prev: "Previous photos",
+    next: "Next photos",
   },
   lightbox: {
     label: "Photo",
@@ -183,6 +185,8 @@ const pl = {
     bandTitle: "Zdjęcia zespołu",
     bandCopy: "WHITEWATER w czteroosobowym składzie — na żywo, na próbie i w kadrze.",
     open: "Zobacz",
+    prev: "Poprzednie zdjęcia",
+    next: "Następne zdjęcia",
   },
   lightbox: {
     label: "Zdjęcie",

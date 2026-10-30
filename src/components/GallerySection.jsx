@@ -1,85 +1,87 @@
-import { useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
-export default function GallerySection({ id, kicker, title, copy, photos, alts, openLabel, featured = [], onOpen }) {
-  const rootRef = useRef(null);
+// A strip of small photos. Swipe / scroll sideways, use the arrows, or click a photo to open it big.
+export default function GallerySection({ id, kicker, title, copy, photos, alts, openLabel, prevLabel, nextLabel, onOpen }) {
+  const trackRef = useRef(null);
+  const [edge, setEdge] = useState({ start: true, end: false });
+  const [thumb, setThumb] = useState({ left: 0, width: 100 });
+
+  const measure = useCallback(() => {
+    const el = trackRef.current;
+    if (!el) return;
+    const max = el.scrollWidth - el.clientWidth;
+    const width = Math.min(100, (el.clientWidth / el.scrollWidth) * 100);
+    setEdge({ start: el.scrollLeft <= 2, end: el.scrollLeft >= max - 2 });
+    setThumb({ left: max > 0 ? (el.scrollLeft / max) * (100 - width) : 0, width });
+  }, []);
 
   useEffect(() => {
-    const root = rootRef.current;
-    if (!root) return undefined;
-
-    const tiles = [...root.querySelectorAll(".tile")];
-
-    const reveal = (tile) => {
-      tile.classList.add("is-in");
+    const el = trackRef.current;
+    if (!el) return undefined;
+    let frame = 0;
+    const onChange = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(measure);
     };
-
-    const inView = (tile) => {
-      const rect = tile.getBoundingClientRect();
-      return rect.bottom > 40 && rect.top < window.innerHeight - 40;
-    };
-
-    tiles.forEach((tile) => {
-      if (inView(tile)) reveal(tile);
-    });
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            reveal(entry.target);
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0, rootMargin: "80px 0px" },
-    );
-
-    tiles.forEach((tile) => {
-      if (!tile.classList.contains("is-in")) observer.observe(tile);
-    });
-
-    const onScroll = () => {
-      tiles.forEach((tile) => {
-        if (!tile.classList.contains("is-in") && inView(tile)) {
-          reveal(tile);
-          observer.unobserve(tile);
-        }
-      });
-    };
-
-    window.addEventListener("scroll", onScroll, { passive: true });
-    const safety = window.setTimeout(() => tiles.forEach(reveal), 1200);
-
+    measure();
+    el.addEventListener("scroll", onChange, { passive: true });
+    window.addEventListener("resize", onChange);
     return () => {
-      observer.disconnect();
-      window.removeEventListener("scroll", onScroll);
-      window.clearTimeout(safety);
+      cancelAnimationFrame(frame);
+      el.removeEventListener("scroll", onChange);
+      window.removeEventListener("resize", onChange);
     };
-  }, [photos]);
+  }, [measure]);
+
+  // Move by whole photos: as many as fit on screen.
+  const page = (direction) => {
+    const el = trackRef.current;
+    if (!el) return;
+    const tiles = el.children;
+    const step = tiles.length > 1 ? tiles[1].offsetLeft - tiles[0].offsetLeft : el.clientWidth;
+    const fit = Math.max(1, Math.floor(el.clientWidth / step));
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    el.scrollBy({ left: direction * step * fit, behavior: reduced ? "auto" : "smooth" });
+  };
 
   return (
-    <section className="gallery-section" id={id} ref={rootRef}>
+    <section className="gallery-section" id={id}>
       <header className="gallery-head">
         <p className="gallery-kicker">{kicker}</p>
         <h3>{title}</h3>
-        <p className="gallery-copy">{copy}</p>
+        <div className="gallery-side">
+          <p className="gallery-copy">{copy}</p>
+          <div className="carousel-ctrl">
+            <button type="button" className="carousel-btn" aria-label={prevLabel} disabled={edge.start} onClick={() => page(-1)}>
+              &lt;
+            </button>
+            <button type="button" className="carousel-btn" aria-label={nextLabel} disabled={edge.end} onClick={() => page(1)}>
+              &gt;
+            </button>
+          </div>
+        </div>
       </header>
-      <div className="mosaic">
-        {photos.map((photo, index) => (
-          <button
-            key={photo.src}
-            type="button"
-            className={`tile${featured.includes(index) ? " tile-wide" : ""}`}
-            style={{ "--delay": `${Math.min(index, 12) * 55}ms` }}
-            onClick={() => onOpen(index)}
-            aria-label={`${openLabel}: ${alts[photo.alt]}`}
-          >
-            <img src={photo.src} alt={alts[photo.alt]} loading="lazy" decoding="async" />
-            <span className="tile-over" aria-hidden="true">
-              <span className="pill pill-dashed pill-ghost">{openLabel}</span>
-            </span>
-          </button>
-        ))}
+
+      <div className="carousel">
+        <div className="carousel-track" ref={trackRef} role="group" aria-label={title} tabIndex={0}>
+          {photos.map((photo, index) => (
+            <button
+              key={photo.src}
+              type="button"
+              className="tile"
+              onClick={() => onOpen(index)}
+              aria-label={`${openLabel}: ${alts[photo.alt]}`}
+            >
+              <img src={photo.src} alt={alts[photo.alt]} loading="lazy" decoding="async" />
+              <span className="tile-over" aria-hidden="true">
+                <span className="pill pill-dashed pill-ghost">{openLabel}</span>
+              </span>
+            </button>
+          ))}
+        </div>
+        <div className="carousel-bar" aria-hidden="true">
+          <span style={{ left: `${thumb.left}%`, width: `${thumb.width}%` }} />
+        </div>
       </div>
     </section>
   );

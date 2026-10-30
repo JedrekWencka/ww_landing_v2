@@ -45,8 +45,9 @@ export default function Gallery({ t }) {
         copy={t.gallery.albumCopy}
         alts={t.alt}
         openLabel={t.gallery.open}
+        prevLabel={t.gallery.prev}
+        nextLabel={t.gallery.next}
         photos={albumPhotos}
-        featured={[0, 3]}
         onOpen={(index) => setViewer({ kind: "album", index })}
       />
 
@@ -57,8 +58,9 @@ export default function Gallery({ t }) {
         copy={t.gallery.bandCopy}
         alts={t.alt}
         openLabel={t.gallery.open}
+        prevLabel={t.gallery.prev}
+        nextLabel={t.gallery.next}
         photos={bandPhotos}
-        featured={[0, 9]}
         onOpen={(index) => setViewer({ kind: "band", index })}
       />
 
