@@ -52,19 +52,31 @@ export default function Header({ t, lang }) {
   const [active, setActive] = useState("home");
   const [open, setOpen] = useState(false);
 
-  // Highlight the menu item of the section being read.
+  // Highlight the menu item of the section being read: the last section whose top has passed
+  // 40% of the screen height; at the very bottom of the page it is always Contact.
   useEffect(() => {
-    const targets = SECTION_IDS.map((id) => document.getElementById(id)).filter(Boolean);
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) setActive(entry.target.id);
-        });
-      },
-      { rootMargin: "-40% 0px -55% 0px", threshold: 0 },
-    );
-    targets.forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const atBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4;
+      let current = SECTION_IDS[0];
+      for (const id of SECTION_IDS) {
+        const el = document.getElementById(id);
+        if (el && el.getBoundingClientRect().top <= window.innerHeight * 0.4) current = id;
+      }
+      setActive(atBottom ? "contact" : current);
+    };
+    const onScroll = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      if (frame) cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
   }, []);
 
   useEffect(() => {
@@ -117,7 +129,7 @@ export default function Header({ t, lang }) {
           <nav className="menu pill" aria-label={t.nav.label}>
             {items.map((item) => link(item))}
           </nav>
-          <a className="pill pill-dashed top-contact" href={`mailto:${LINKS.email}`}>
+          <a className={`pill pill-dashed top-contact${active === "contact" ? " is-here" : ""}`} href="#contact">
             {t.nav.contact}
           </a>
           <Socials t={t} />
@@ -140,7 +152,7 @@ export default function Header({ t, lang }) {
           </button>
           <nav aria-label={t.nav.label}>
             {[{ id: "home", label: t.nav.home }, ...items].map((item) => link(item, { onClick: close }))}
-            <a href={`mailto:${LINKS.email}`} onClick={close}>
+            <a href="#contact" className={active === "contact" ? "is-here" : undefined} onClick={close}>
               {t.nav.contact}
             </a>
           </nav>

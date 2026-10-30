@@ -261,8 +261,10 @@ footer[id] {
   backdrop-filter: blur(12px);
 }
 
-.top-contact:hover {
+.top-contact:hover,
+.top-contact.is-here {
   background: var(--ink);
+  color: var(--bg);
 }
 
 .icons {
