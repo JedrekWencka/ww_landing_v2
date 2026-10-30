@@ -37,10 +37,19 @@ Result: **http://2.28.230.117:8081/** (Polish: `/pl/`). It runs in its own conta
 so the live site on ports 80/443 is not touched. The preview build has `noindex` in every page,
 `Disallow: /` in robots.txt, no sitemap, no canonical/hreflang, and nginx adds `X-Robots-Tag: noindex`.
 
-## Going live (later)
+## Production (whitewaterband.com)
 
-`npm run build` (without `SITE_ENV`) produces the indexable production build with canonical,
-hreflang, sitemap and `robots.txt` for https://whitewaterband.com. To switch, upload that `dist/`
-to `/opt/ww_landing/dist` on the server (what `ww_landing/deploy/hetzner.sh` does) — do **not**
-overwrite the server's `nginx.conf` (it also serves b19studio.net).
+```bash
+./deploy/hetzner.sh          # asks first; add --yes to skip the question
+```
+
+It builds the indexable production site (canonical + hreflang + sitemap + robots.txt), refuses to
+publish anything that contains `noindex`, keeps a backup of the live files on the server
+(`/opt/ww_landing/dist.bak-…`, last 3) and prints the one-line roll-back command.
+It never uploads `nginx.conf` — the server's copy also serves b19studio.net.
+
 Keep `public/google456df6f8bf3cad17.html`: Google Search Console uses it to verify ownership.
+After a deploy, in Search Console re-submit `sitemap.xml` and request indexing of `/` and `/pl/`.
+
+The preview (`./deploy/preview.sh`, port 8081) can stay running for trying out changes before
+they go live, or be switched off on the server with `cd /opt/ww_preview && docker compose down`.
