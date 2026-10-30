@@ -185,6 +185,13 @@ footer[id] {
   letter-spacing: 0.06em;
 }
 
+/* Tight line box, so the capitals sit exactly in the middle of the pill
+   (a taller line box pushed them about 1.5px low). */
+.top-lang .lang {
+  font-size: 12px;
+  line-height: 1;
+}
+
 .top-lang .lang a,
 .top-lang .lang .lang-sep {
   font-family: var(--sans);
