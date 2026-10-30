@@ -10,7 +10,7 @@
   --sans: "Inter Tight", "Helvetica Neue", Helvetica, Arial, sans-serif;
   --serif: "EB Garamond", Garamond, "Times New Roman", serif;
   --pad: 15px;
-  --bar: 46px; /* header height incl. spacing */
+  --bar: 64px; /* header (46px) + gap below the menu pills */
 }
 
 * {
