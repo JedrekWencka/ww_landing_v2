@@ -54,7 +54,7 @@ const en = {
   band: {
     title: "The Band",
     text:
-      "WHITEWATER is a four-piece from Greater Poland. Rooted in stoner rock, grunge and heavy rock, the sound is built around massive riffs, tension and dynamics — QOTSA, Kyuss, All Them Witches, Black Sabbath, Alice In Chains.",
+      "WHITEWATER is a four-piece from Greater Poland, rooted in stoner rock, grunge and heavy rock. Drawing on QOTSA, Kyuss, All Them Witches, Black Sabbath and Alice In Chains, they build their sound around massive riffs, tension and dynamics.",
     genreLabel: "Genre",
     genre: "Stoner rock, grunge, heavy rock",
     baseLabel: "Based in",
@@ -152,7 +152,7 @@ const pl = {
   band: {
     title: "Zespół",
     text:
-      "WHITEWATER to czteroosobowy zespół z Wielkopolski. Wyrasta ze stoner rocka, grunge'u i ciężkiego rocka, a jego brzmienie opiera się na potężnych riffach, napięciu i dynamice — QOTSA, Kyuss, All Them Witches, Black Sabbath, Alice In Chains.",
+      "WHITEWATER to czteroosobowy zespół z Wielkopolski, wyrastający ze stoner rocka, grunge'u i ciężkiego rocka. Czerpiąc inspiracje z QOTSA, Kyuss, All Them Witches, Black Sabbath i Alice In Chains, zespół buduje swoje brzmienie na potężnych riffach, napięciu i dynamice.",
     genreLabel: "Gatunek",
     genre: "Stoner rock, grunge, ciężki rock",
     baseLabel: "Skąd",
