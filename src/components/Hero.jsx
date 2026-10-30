@@ -11,9 +11,6 @@ export default function Hero({ t }) {
           <h1>
             <img src="/wordmark.png" width="1408" height="221" alt={t.hero.wordmarkAlt} />
           </h1>
-          <a className="pill pill-solid" href={LINKS.album} target="_blank" rel="noopener noreferrer">
-            {t.hero.pill}
-          </a>
         </div>
 
         <Marquee className="marquee-hero" items={t.hero.ticker} />

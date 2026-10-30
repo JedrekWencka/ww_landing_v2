@@ -36,7 +36,6 @@ const en = {
   langLabel: "Language",
   hero: {
     wordmarkAlt: "WHITEWATER",
-    pill: "Afterlife",
     ticker: ["Stoner rock", "Grunge", "Heavy rock"],
     // Headline lines; the link follows, then a full stop.
     lead: ["Afterlife", "available now", "on our"],
@@ -134,7 +133,6 @@ const pl = {
   langLabel: "Język",
   hero: {
     wordmarkAlt: "WHITEWATER",
-    pill: "Afterlife",
     ticker: ["Stoner rock", "Grunge", "Heavy rock"],
     lead: ["Afterlife", "już do kupienia", "w naszym"],
     leadLink: "sklepie Bandcamp",

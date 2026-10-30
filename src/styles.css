@@ -107,20 +107,6 @@ footer[id] {
   white-space: nowrap;
 }
 
-.pill-solid {
-  background: var(--ink);
-  color: var(--bg);
-  height: 38px;
-  padding: 0 22px;
-  font-size: 16px;
-  transition: background 0.2s, transform 0.2s;
-}
-
-.pill-solid:hover {
-  background: #000;
-  transform: translateY(-1px);
-}
-
 .pill-dashed {
   border: 1px dashed var(--ink);
   background: transparent;
@@ -377,14 +363,12 @@ footer[id] {
 .hero-brand {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
-  gap: 14px;
-  height: 150px;
-  padding: 24px var(--pad) 0;
+  justify-content: flex-start;
+  padding: 26px var(--pad);
 }
 
 .hero-brand h1 {
-  flex: 0 1 560px;
+  flex: 0 1 705px;
   min-width: 0;
   line-height: 0;
 }
@@ -392,11 +376,6 @@ footer[id] {
 .hero-brand h1 img {
   width: 100%;
   height: auto;
-}
-
-.hero-brand .pill-solid {
-  flex: none;
-  margin-top: 2px;
 }
 
 /* marquee */
@@ -1193,7 +1172,7 @@ footer[id] {
   }
 
   .hero-brand h1 {
-    flex-basis: 360px;
+    flex-basis: 100%;
   }
 
   .hero-lead {
