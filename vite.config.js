@@ -11,9 +11,10 @@ const here = dirname(fileURLToPath(import.meta.url));
 function seo() {
   return {
     name: "ww-seo",
-    transformIndexHtml(html) {
+    transformIndexHtml(html, ctx) {
       const lang = /<html lang="pl"/.test(html) ? "pl" : "en";
-      return html.replace("<!--seo-->", headTags(lang));
+      // Analytics only in the production build (not in `npm run dev`, not in the preview build).
+      return html.replace("<!--seo-->", headTags(lang, { analytics: !ctx.server }));
     },
     generateBundle() {
       if (!PREVIEW) this.emitFile({ type: "asset", fileName: "sitemap.xml", source: sitemapXml() });

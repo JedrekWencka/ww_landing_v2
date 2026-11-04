@@ -2,9 +2,28 @@
 // to fill the <head> of index.html (EN) and pl/index.html (PL), and to write
 // sitemap.xml and robots.txt.
 
-import { LINKS, SITE } from "./links.js";
+import { CONSENT_KEY, GA_ID, LINKS, SITE } from "./links.js";
 
 export { LINKS, SITE };
+
+// Consent Mode v2: everything starts "denied" (no cookies, no identifiers). The visitor's
+// earlier choice, saved by src/analytics.js under CONSENT_KEY, is applied before the first hit.
+
+function analyticsTags() {
+  return `
+    <script async src="https://www.googletagmanager.com/gtag/js?id=${GA_ID}"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        analytics_storage: 'denied', ad_storage: 'denied',
+        ad_user_data: 'denied', ad_personalization: 'denied'
+      });
+      try { if (localStorage.getItem('${CONSENT_KEY}') === 'granted') gtag('consent', 'update', { analytics_storage: 'granted' }); } catch (e) {}
+      gtag('js', new Date());
+      gtag('config', '${GA_ID}');
+    </script>`;
+}
 
 // Build-time switch: `SITE_ENV=preview` makes the whole site invisible to search engines.
 export const PREVIEW = process.env.SITE_ENV === "preview";
@@ -99,7 +118,7 @@ function jsonLd(lang) {
 }
 
 /** Everything that goes into <head> for one language, apart from charset/viewport/fonts. */
-export function headTags(lang) {
+export function headTags(lang, { analytics = false } = {}) {
   const p = PAGES[lang];
   const other = lang === "en" ? "pl" : "en";
   const url = SITE + p.path;
@@ -130,7 +149,7 @@ ${PREVIEW ? "" : `    <link rel="canonical" href="${url}" />
     <meta name="twitter:image" content="${img}" />
     <script type="application/ld+json">
 ${jsonLd(lang)}
-    </script>`;
+    </script>${analytics && !PREVIEW ? analyticsTags() : ""}`;
 }
 
 export function sitemapXml() {

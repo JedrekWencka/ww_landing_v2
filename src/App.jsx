@@ -5,6 +5,7 @@ import Listen from "./components/Listen.jsx";
 import Tour from "./components/Tour.jsx";
 import Gallery from "./components/Gallery.jsx";
 import Contact from "./components/Contact.jsx";
+import CookieBanner from "./components/CookieBanner.jsx";
 import { strings } from "./i18n.js";
 
 export default function App({ lang = "en" }) {
@@ -20,6 +21,7 @@ export default function App({ lang = "en" }) {
         <Gallery t={t} />
       </main>
       <Contact t={t} lang={lang} />
+      <CookieBanner t={t} />
     </>
   );
 }

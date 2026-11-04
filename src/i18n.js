@@ -100,6 +100,13 @@ const en = {
     title: "Contact",
     email: "Email",
   },
+  consent: {
+    label: "Cookies",
+    text: "We use cookies for anonymous visit statistics (Google Analytics). The site works the same either way.",
+    accept: "Accept",
+    decline: "Decline",
+    settings: "Cookie settings",
+  },
   alt: {
     digipackOpen: "Afterlife CD digipack by WHITEWATER, open with the disc",
     digipackCover: "Afterlife CD digipack by WHITEWATER, front cover",
@@ -197,6 +204,13 @@ const pl = {
   contact: {
     title: "Kontakt",
     email: "E-mail",
+  },
+  consent: {
+    label: "Pliki cookie",
+    text: "Używamy plików cookie do anonimowych statystyk odwiedzin (Google Analytics). Strona działa tak samo niezależnie od wyboru.",
+    accept: "Akceptuję",
+    decline: "Odrzucam",
+    settings: "Ustawienia cookies",
   },
   alt: {
     digipackOpen: "Otwarty digipack CD Afterlife zespołu WHITEWATER z płytą",

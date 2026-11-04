@@ -1,6 +1,7 @@
 import { StrictMode } from "react";
 import { createRoot, hydrateRoot } from "react-dom/client";
 import App from "./App.jsx";
+import { initTracking } from "./analytics.js";
 import "./styles.css";
 
 const lang = document.documentElement.lang === "pl" ? "pl" : "en";
@@ -15,3 +16,5 @@ const app = (
 // In `npm run dev` the root is empty, so render from scratch.
 if (container.firstElementChild) hydrateRoot(container, app);
 else createRoot(container).render(app);
+
+initTracking();

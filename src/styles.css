@@ -1157,6 +1157,82 @@ footer[id] {
   cursor: default;
 }
 
+.foot-btn {
+  display: block;
+  width: 100%;
+  padding: 7px 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  font-size: 16px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.foot-btn:hover {
+  color: var(--grey);
+}
+
+/* ───────────── cookie banner ───────────── */
+.consent {
+  position: fixed;
+  left: var(--pad);
+  right: var(--pad);
+  bottom: var(--pad);
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px 24px;
+  max-width: 720px;
+  margin-inline: auto;
+  padding: 14px 16px 14px 20px;
+  border: 1px solid var(--ink);
+  border-radius: 24px;
+  background: var(--bg);
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.consent p {
+  margin: 0;
+}
+
+.consent-actions {
+  display: flex;
+  flex: none;
+  gap: 8px;
+}
+
+.consent .pill-dashed {
+  font-family: var(--sans);
+  font-size: 14px;
+}
+
+.consent-accept {
+  border-color: var(--ink);
+  background: var(--ink);
+  color: var(--bg);
+  cursor: pointer;
+}
+
+.consent-accept:hover {
+  background: transparent;
+  color: var(--ink);
+}
+
+@media (max-width: 560px) {
+  .consent {
+    flex-direction: column;
+    align-items: stretch;
+    border-radius: 20px;
+  }
+  .consent-actions .pill {
+    flex: 1;
+  }
+}
+
 /* ───────────── responsive ───────────── */
 @media (max-width: 1200px) {
   .menu a {

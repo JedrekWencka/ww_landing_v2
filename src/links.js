@@ -12,3 +12,8 @@ export const LINKS = {
   youtube: "https://youtube.com/@WHITEWATERBANDPL",
   email: "kontakt.whitewater@gmail.com",
 };
+
+// Google Analytics 4 (property "whitewaterband.com", stream "WHITEWATER website").
+export const GA_ID = "G-P9JBBMJBY4";
+// localStorage key holding the visitor's cookie choice: "granted" or "denied".
+export const CONSENT_KEY = "ww-consent";

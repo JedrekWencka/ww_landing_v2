@@ -1,5 +1,6 @@
 import { LINKS } from "../links.js";
 import { strings } from "../i18n.js";
+import { CONSENT_EVENT } from "../analytics.js";
 
 export default function Contact({ t, lang }) {
   const rows = [
@@ -63,6 +64,11 @@ export default function Contact({ t, lang }) {
               </a>
             </li>
           ))}
+          <li>
+            <button type="button" className="foot-btn" onClick={() => window.dispatchEvent(new Event(CONSENT_EVENT))}>
+              {t.consent.settings}
+            </button>
+          </li>
         </ul>
       </aside>
     </footer>
