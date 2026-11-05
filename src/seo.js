@@ -6,22 +6,25 @@ import { CONSENT_KEY, GA_ID, LINKS, SITE } from "./links.js";
 
 export { LINKS, SITE };
 
-// Consent Mode v2: everything starts "denied" (no cookies, no identifiers). The visitor's
-// earlier choice, saved by src/analytics.js under CONSENT_KEY, is applied before the first hit.
-
+// Nothing from Google is loaded until the visitor accepts: this only defines gtag() and
+// window.loadGA(); src/analytics.js calls loadGA() on Accept. A saved "granted" (CONSENT_KEY)
+// loads it straight away on later visits.
 function analyticsTags() {
   return `
-    <script async src="https://www.googletagmanager.com/gtag/js?id=${GA_ID}"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
-      gtag('consent', 'default', {
-        analytics_storage: 'denied', ad_storage: 'denied',
-        ad_user_data: 'denied', ad_personalization: 'denied'
-      });
-      try { if (localStorage.getItem('${CONSENT_KEY}') === 'granted') gtag('consent', 'update', { analytics_storage: 'granted' }); } catch (e) {}
-      gtag('js', new Date());
-      gtag('config', '${GA_ID}');
+      window.loadGA = function () {
+        if (window.__gaLoaded) return;
+        window.__gaLoaded = true;
+        gtag('consent', 'default', { analytics_storage: 'granted', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
+        gtag('js', new Date());
+        gtag('config', '${GA_ID}');
+        var s = document.createElement('script'); s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=${GA_ID}';
+        document.head.appendChild(s);
+      };
+      try { if (localStorage.getItem('${CONSENT_KEY}') === 'granted') loadGA(); } catch (e) {}
     </script>`;
 }
 

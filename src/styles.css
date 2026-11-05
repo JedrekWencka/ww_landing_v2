@@ -1195,6 +1195,12 @@ footer[id] {
   line-height: 1.4;
 }
 
+.consent p a {
+  color: inherit;
+  text-underline-offset: 3px;
+  white-space: nowrap;
+}
+
 .consent p {
   margin: 0;
 }

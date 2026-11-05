@@ -65,6 +65,9 @@ export default function Contact({ t, lang }) {
             </li>
           ))}
           <li>
+            <a href={t.consent.privacyUrl}>{t.consent.privacy}</a>
+          </li>
+          <li>
             <button type="button" className="foot-btn" onClick={() => window.dispatchEvent(new Event(CONSENT_EVENT))}>
               {t.consent.settings}
             </button>

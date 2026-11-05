@@ -30,7 +30,9 @@ For live-reload while editing, use `npm install` once, then `npm run dev` (http:
 | All copy, EN + PL | `src/i18n.js` |
 | Links (Bandcamp, Spotify …, e-mail) | `src/links.js` |
 | Titles, descriptions, hreflang, JSON-LD, sitemap, robots | `src/seo.js` (`SITE_ENV=preview` hides everything from search engines) |
-| Analytics + consent banner | `src/analytics.js`, `src/components/CookieBanner.jsx` |
+| Analytics + consent banner | `src/analytics.js`, `src/components/CookieBanner.jsx` (Google's script loads only after Accept) |
+| Privacy policy (EN `/privacy/`, PL `/pl/prywatnosc/`) | `src/privacy.json` → `scripts/privacy.py` (run by `site.sh` after the Vite build) |
+| Fonts (self-hosted, no Google Fonts) | `@fontsource/eb-garamond`, `@fontsource/inter-tight`, imported in `src/main.jsx` |
 | Hero slider photos | `src/data/slides.js` |
 | Gallery photos (alt text = key into `i18n.js`) | `src/data/photos.js` |
 | Layout components | `src/components/*` |
@@ -39,6 +41,8 @@ For live-reload while editing, use `npm install` once, then `npm run dev` (http:
 | Pre-rendering after `vite build` | `scripts/prerender.mjs` |
 | nginx for the preview container | `deploy/nginx.conf` |
 | Build + deploy | `site.sh`, `site.env`, `docker-compose.yml`, `compose.preview.yml` |
+
+If tracking changes (a new tool, new events), update `src/privacy.json` and its `updated` date.
 
 Keep `public/google456df6f8bf3cad17.html`. Google Search Console uses it to verify ownership.
 

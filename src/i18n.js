@@ -102,10 +102,12 @@ const en = {
   },
   consent: {
     label: "Cookies",
-    text: "We use cookies for anonymous visit statistics (Google Analytics). The site works the same either way.",
+    text: "We use Google Analytics cookies for anonymous visit statistics. Without your consent nothing is sent to Google, and the site works the same.",
     accept: "Accept",
     decline: "Decline",
     settings: "Cookie settings",
+    privacy: "Privacy policy",
+    privacyUrl: "/privacy/",
   },
   alt: {
     digipackOpen: "Afterlife CD digipack by WHITEWATER, open with the disc",
@@ -207,10 +209,12 @@ const pl = {
   },
   consent: {
     label: "Pliki cookie",
-    text: "Używamy plików cookie do anonimowych statystyk odwiedzin (Google Analytics). Strona działa tak samo niezależnie od wyboru.",
+    text: "Używamy plików cookie Google Analytics do anonimowych statystyk odwiedzin. Bez Twojej zgody nic nie jest wysyłane do Google, a strona działa tak samo.",
     accept: "Akceptuję",
     decline: "Odrzucam",
     settings: "Ustawienia cookies",
+    privacy: "Polityka prywatności",
+    privacyUrl: "/pl/prywatnosc/",
   },
   alt: {
     digipackOpen: "Otwarty digipack CD Afterlife zespołu WHITEWATER z płytą",

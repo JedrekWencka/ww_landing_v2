@@ -1,8 +1,8 @@
-// Google Analytics helpers. The gtag snippet itself is injected into <head> by the production
-// build (see src/seo.js); in dev and preview builds `window.gtag` does not exist and every
-// function here quietly does nothing.
+// Google Analytics helpers. The production build puts gtag() and window.loadGA() into <head>
+// (src/seo.js); Google's script itself is only fetched after the visitor accepts. In dev and
+// preview builds `window.gtag` does not exist and every function here quietly does nothing.
 
-import { CONSENT_KEY } from "./links.js";
+import { CONSENT_KEY, GA_ID } from "./links.js";
 
 export const CONSENT_EVENT = "ww:consent-open";
 
@@ -21,13 +21,28 @@ export function setConsent(choice) {
   } catch {
     /* private mode: the choice just isn't remembered */
   }
-  if (typeof window.gtag === "function") {
-    window.gtag("consent", "update", { analytics_storage: choice });
+  if (typeof window.gtag !== "function") return; // dev / preview build: no analytics at all
+  if (choice === "granted") {
+    window.loadGA();
+    return;
   }
+  // declined or withdrawn: stop collecting and remove the Analytics cookies
+  if (window.__gaLoaded) window.gtag("consent", "update", { analytics_storage: "denied" });
+  window[`ga-disable-${GA_ID}`] = true;
+  const host = location.hostname.replace(/^www\./, "");
+  document.cookie
+    .split(";")
+    .map((c) => c.split("=")[0].trim())
+    .filter((n) => /^_ga/.test(n))
+    .forEach((n) =>
+      ["", `; domain=${host}`, `; domain=.${host}`].forEach((d) => {
+        document.cookie = `${n}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/${d}`;
+      }),
+    );
 }
 
 export function track(name, params = {}) {
-  if (typeof window.gtag === "function") window.gtag("event", name, params);
+  if (window.__gaLoaded) window.gtag("event", name, params);
 }
 
 // Where a link goes → a readable service name for the reports.

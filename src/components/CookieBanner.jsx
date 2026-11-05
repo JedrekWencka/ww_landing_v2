@@ -22,7 +22,9 @@ export default function CookieBanner({ t }) {
 
   return (
     <div className="consent" role="dialog" aria-label={t.consent.label}>
-      <p>{t.consent.text}</p>
+      <p>
+        {t.consent.text} <a href={t.consent.privacyUrl}>{t.consent.privacy}</a>
+      </p>
       <div className="consent-actions">
         <button type="button" className="pill pill-dashed" onClick={() => choose("denied")}>
           {t.consent.decline}

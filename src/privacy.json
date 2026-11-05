@@ -1,0 +1,109 @@
+{
+  "_comment": "Privacy policy (EN + PL), built into the paths below. 'html' may contain <p>, <ul>, <li>, <a>, <b>, <code>. Update 'updated' when the content changes.",
+  "updated": "2026-11-05",
+  "site": "https://whitewaterband.com",
+  "ga_id": "G-P9JBBMJBY4",
+  "consent_key": "ww-consent",
+  "en": {
+    "path": "/privacy/",
+    "home": "/",
+    "title": "Privacy policy — WHITEWATER",
+    "description": "How whitewaterband.com handles your data: statistics only with consent, no ads, no selling of data.",
+    "heading": "Privacy policy",
+    "updated_label": "Last updated",
+    "back": "← Back to WHITEWATER",
+    "consent_status": {
+      "granted": "Your current choice: statistics allowed.",
+      "denied": "Your current choice: statistics declined.",
+      "none": "You haven't chosen yet."
+    },
+    "accept": "Accept",
+    "decline": "Decline",
+    "intro": "Short version: this site counts visits with Google Analytics <b>only if you click Accept</b> in the cookie banner. Until then nothing is sent to Google. No ads, no tracking across other sites, no selling of data. Details below.",
+    "sections": [
+      {
+        "h": "Who is responsible",
+        "html": "<p>The controller of your personal data is <b>Jędrzej Wencka</b>, who runs this website on behalf of the band WHITEWATER.</p><p>Contact for anything related to privacy: <a href=\"mailto:kontakt.whitewater@gmail.com\">kontakt.whitewater@gmail.com</a>.</p>"
+      },
+      {
+        "h": "When you just visit the site",
+        "html": "<p>The site runs on our own server rented from Hetzner Online GmbH (data centre in Germany). Like every web server, it records basic technical data about each request in its logs: IP address, date and time, the address requested, the browser's user-agent and the referring page.</p><p>These logs are used only to keep the site secure and working (e.g. to spot attacks or errors). They are not used to identify visitors, are not combined with other data and are kept only for a limited time. Legal basis: our legitimate interest in running a safe website (Art. 6(1)(f) GDPR).</p>"
+      },
+      {
+        "h": "Google Analytics — only with your consent",
+        "html": "<p>If you click <b>Accept</b> in the cookie banner, the site loads Google Analytics 4, provided by Google Ireland Limited (Gordon House, Barrow Street, Dublin 4, Ireland). If you click <b>Decline</b> or ignore the banner, Google Analytics is not loaded at all and nothing is sent to Google.</p><p>With your consent, Google Analytics collects:</p><ul><li>pages viewed, time on the site and how you got here (e.g. a search engine or a link),</li><li>approximate location (country, city) and the type of device, system and browser,</li><li>actions on the site: clicks on links to Bandcamp, Spotify, Apple Music, YouTube, Facebook and Instagram, clicking the e-mail address, switching the language.</li></ul><p>Google Analytics 4 does not store your IP address. Google signals and advertising features are switched off, and data is not shared with Google for its own purposes. Detailed event data is kept for 2 months and user-level data for up to 14 months; after that only aggregated statistics remain.</p><p>Cookies set by Google Analytics: <code>_ga</code> and <code>_ga_P9JBBMJBY4</code> (distinguish visitors and sessions, valid up to 2 years).</p><p>Google may process data in the USA. Google LLC is certified under the EU–US Data Privacy Framework, which the European Commission recognises as providing an adequate level of protection.</p><p>Legal basis: your consent (Art. 6(1)(a) GDPR, together with Art. 399 of the Polish Electronic Communications Law). You can withdraw it at any time with the <b>Cookie settings</b> link in the footer or the buttons below — the analytics cookies are then deleted. Withdrawing consent does not affect what was collected before.</p><p>More about Google's processing: <a href=\"https://policies.google.com/privacy\" target=\"_blank\" rel=\"noopener\">policies.google.com/privacy</a>.</p>"
+      },
+      {
+        "h": "Stored only in your browser",
+        "html": "<p>Small settings are saved in your browser's local storage. They never leave your device and don't need consent, because they only make the site do what you asked:</p><ul><li><code>ww-consent</code> — your answer in the cookie banner, so it doesn't appear on every visit,</li></ul>"
+      },
+      {
+        "h": "Music, fonts and links",
+        "html": "<p>There is no music player or embedded content from other services on this site. The fonts and all images are served from our own server. Links to Bandcamp, Spotify, Apple Music, YouTube, Facebook and Instagram open their pages in a new tab; their own privacy policies apply there.</p>"
+      },
+      {
+        "h": "When you contact us",
+        "html": "<p>If you write an e-mail or call, we use your name, contact details and what you tell us only to reply and to arrange booking, concerts and collaboration. Legal basis: steps taken at your request before a contract and performing it (Art. 6(1)(b) GDPR), and our legitimate interest in answering messages (Art. 6(1)(f)).</p><p>We keep correspondence as long as needed for the collaboration, and afterwards only as long as required by law or to deal with possible claims.</p>"
+      },
+      {
+        "h": "Your rights",
+        "html": "<p>You have the right to access your data, to have it corrected or deleted, to restrict its processing, to data portability, to object to processing based on legitimate interest, and to withdraw consent at any time. Just write to the e-mail address above.</p><p>You can also lodge a complaint with the Polish data protection authority: Prezes Urzędu Ochrony Danych Osobowych, ul. Stawki 2, 00-193 Warszawa, <a href=\"https://uodo.gov.pl\" target=\"_blank\" rel=\"noopener\">uodo.gov.pl</a>.</p><p>No automated decision-making or profiling with legal effects takes place on this site.</p>"
+      },
+      {
+        "h": "Changes",
+        "html": "<p>If the way the site handles data changes (e.g. a new tool is added), this page will be updated and the date at the top will change.</p>"
+      }
+    ]
+  },
+  "pl": {
+    "path": "/pl/prywatnosc/",
+    "home": "/pl/",
+    "title": "Polityka prywatności — WHITEWATER",
+    "description": "Jak whitewaterband.com przetwarza dane: statystyki tylko za zgodą, bez reklam, bez sprzedawania danych.",
+    "heading": "Polityka prywatności",
+    "updated_label": "Ostatnia aktualizacja",
+    "back": "← Wróć do strony WHITEWATER",
+    "consent_status": {
+      "granted": "Twój obecny wybór: statystyki dozwolone.",
+      "denied": "Twój obecny wybór: statystyki odrzucone.",
+      "none": "Nie dokonano jeszcze wyboru."
+    },
+    "accept": "Akceptuję",
+    "decline": "Odrzucam",
+    "intro": "W skrócie: ta strona liczy odwiedziny za pomocą Google Analytics <b>tylko wtedy, gdy klikniesz „Akceptuję”</b> w okienku cookies. Do tego czasu nic nie jest wysyłane do Google. Bez reklam, bez śledzenia na innych stronach, bez sprzedawania danych. Szczegóły poniżej.",
+    "sections": [
+      {
+        "h": "Kto jest administratorem",
+        "html": "<p>Administratorem Twoich danych osobowych jest <b>Jędrzej Wencka</b>, który prowadzi tę stronę w imieniu zespołu WHITEWATER.</p><p>Kontakt we wszystkich sprawach dotyczących prywatności: <a href=\"mailto:kontakt.whitewater@gmail.com\">kontakt.whitewater@gmail.com</a>.</p>"
+      },
+      {
+        "h": "Gdy po prostu odwiedzasz stronę",
+        "html": "<p>Strona działa na naszym własnym serwerze wynajmowanym od Hetzner Online GmbH (centrum danych w Niemczech). Jak każdy serwer WWW, zapisuje on w logach podstawowe dane techniczne o każdym zapytaniu: adres IP, datę i godzinę, adres żądanej podstrony, identyfikator przeglądarki (user-agent) i stronę, z której nastąpiło przejście.</p><p>Logi wykorzystujemy wyłącznie do zapewnienia bezpieczeństwa i prawidłowego działania strony (np. wykrywania ataków lub błędów). Nie służą do identyfikowania odwiedzających, nie są łączone z innymi danymi i są przechowywane tylko przez ograniczony czas. Podstawa prawna: nasz prawnie uzasadniony interes w prowadzeniu bezpiecznej strony (art. 6 ust. 1 lit. f RODO).</p>"
+      },
+      {
+        "h": "Google Analytics — tylko za Twoją zgodą",
+        "html": "<p>Jeśli klikniesz <b>„Akceptuję”</b> w okienku cookies, strona wczyta Google Analytics 4 — usługę Google Ireland Limited (Gordon House, Barrow Street, Dublin 4, Irlandia). Jeśli klikniesz <b>„Odrzucam”</b> albo zignorujesz okienko, Google Analytics w ogóle się nie wczytuje i nic nie jest wysyłane do Google.</p><p>Po wyrażeniu zgody Google Analytics zbiera:</p><ul><li>odwiedzone podstrony, czas spędzony na stronie i źródło wejścia (np. wyszukiwarka lub link),</li><li>przybliżoną lokalizację (kraj, miasto) oraz rodzaj urządzenia, systemu i przeglądarki,</li><li>działania na stronie: kliknięcia w linki do Bandcampa, Spotify, Apple Music, YouTube, Facebooka i Instagrama, kliknięcie adresu e-mail, zmianę języka.</li></ul><p>Google Analytics 4 nie przechowuje Twojego adresu IP. Sygnały Google i funkcje reklamowe są wyłączone, a dane nie są udostępniane Google do jego własnych celów. Szczegółowe dane o zdarzeniach są przechowywane przez 2 miesiące, a dane na poziomie użytkownika do 14 miesięcy; potem zostają wyłącznie zbiorcze statystyki.</p><p>Pliki cookie Google Analytics: <code>_ga</code> i <code>_ga_P9JBBMJBY4</code> (rozróżniają odwiedzających i sesje, ważne do 2 lat).</p><p>Google może przetwarzać dane w USA. Google LLC posiada certyfikację w ramach EU–US Data Privacy Framework, uznanego przez Komisję Europejską za zapewniający odpowiedni stopień ochrony.</p><p>Podstawa prawna: Twoja zgoda (art. 6 ust. 1 lit. a RODO w związku z art. 399 Prawa komunikacji elektronicznej). Możesz ją w każdej chwili wycofać linkiem <b>„Ustawienia cookies”</b> w stopce albo przyciskami poniżej — pliki cookie statystyk zostaną wtedy usunięte. Wycofanie zgody nie wpływa na zgodność z prawem przetwarzania sprzed jej wycofania.</p><p>Więcej o przetwarzaniu danych przez Google: <a href=\"https://policies.google.com/privacy?hl=pl\" target=\"_blank\" rel=\"noopener\">policies.google.com/privacy</a>.</p>"
+      },
+      {
+        "h": "Zapisywane tylko w Twojej przeglądarce",
+        "html": "<p>Drobne ustawienia są zapisywane w pamięci lokalnej (local storage) Twojej przeglądarki. Nigdy nie opuszczają Twojego urządzenia i nie wymagają zgody, bo służą wyłącznie temu, o co prosisz:</p><ul><li><code>ww-consent</code> — Twoja odpowiedź w okienku cookies, żeby nie pokazywało się przy każdej wizycie,</li></ul>"
+      },
+      {
+        "h": "Muzyka, fonty i linki",
+        "html": "<p>Na stronie nie ma odtwarzacza ani treści osadzonych z innych serwisów. Fonty i wszystkie zdjęcia są serwowane z naszego własnego serwera. Linki do Bandcampa, Spotify, Apple Music, YouTube, Facebooka i Instagrama otwierają ich strony w nowej karcie — tam obowiązują ich własne polityki prywatności.</p>"
+      },
+      {
+        "h": "Gdy się z nami kontaktujesz",
+        "html": "<p>Jeśli napiszesz e-mail lub zadzwonisz, Twoje imię, dane kontaktowe i treść wiadomości wykorzystujemy wyłącznie do odpowiedzi oraz ustalenia koncertów, bookingu i współpracy. Podstawa prawna: działania na Twoje żądanie przed zawarciem umowy i jej wykonanie (art. 6 ust. 1 lit. b RODO) oraz nasz prawnie uzasadniony interes w odpowiadaniu na wiadomości (art. 6 ust. 1 lit. f RODO).</p><p>Korespondencję przechowujemy tak długo, jak to potrzebne do współpracy, a później tylko przez okres wymagany przepisami lub do czasu przedawnienia ewentualnych roszczeń.</p>"
+      },
+      {
+        "h": "Twoje prawa",
+        "html": "<p>Masz prawo dostępu do swoich danych, ich sprostowania, usunięcia, ograniczenia przetwarzania, przenoszenia, wniesienia sprzeciwu wobec przetwarzania opartego na prawnie uzasadnionym interesie oraz cofnięcia zgody w dowolnym momencie. Wystarczy napisać na podany wyżej adres e-mail.</p><p>Możesz też wnieść skargę do organu nadzorczego: Prezes Urzędu Ochrony Danych Osobowych, ul. Stawki 2, 00-193 Warszawa, <a href=\"https://uodo.gov.pl\" target=\"_blank\" rel=\"noopener\">uodo.gov.pl</a>.</p><p>Na stronie nie dochodzi do zautomatyzowanego podejmowania decyzji ani profilowania wywołującego skutki prawne.</p>"
+      },
+      {
+        "h": "Zmiany",
+        "html": "<p>Jeśli zmieni się sposób przetwarzania danych na stronie (np. dojdzie nowe narzędzie), ta strona zostanie zaktualizowana, a data na górze się zmieni.</p>"
+      }
+    ]
+  }
+}
