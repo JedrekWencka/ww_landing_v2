@@ -1,0 +1,14 @@
+# Shop API next to the website. nginx (the ww-landing container) forwards /api/ to it.
+# Published only on the Docker bridge address, so it is not reachable from the internet directly.
+services:
+  shop-api:
+    build:
+      context: .
+      dockerfile: Dockerfile.shop
+    container_name: ww-shop-api
+    restart: unless-stopped
+    env_file: .env
+    ports:
+      - "172.17.0.1:8787:8787"
+    volumes:
+      - ./data:/data

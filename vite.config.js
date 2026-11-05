@@ -2,6 +2,7 @@ import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
+import { PAGE_LIST } from "./src/pages.js";
 import { PREVIEW, headTags, robotsTxt, sitemapXml } from "./src/seo.js";
 
 const here = dirname(fileURLToPath(import.meta.url));
@@ -13,8 +14,9 @@ function seo() {
     name: "ww-seo",
     transformIndexHtml(html, ctx) {
       const lang = /<html lang="pl"/.test(html) ? "pl" : "en";
+      const page = /data-page="([a-z]+)"/.exec(html)?.[1] ?? "home";
       // Analytics only in the production build (not in `npm run dev`, not in the preview build).
-      return html.replace("<!--seo-->", headTags(lang, { analytics: !ctx.server }));
+      return html.replace("<!--seo-->", headTags(lang, { analytics: !ctx.server, page }));
     },
     generateBundle() {
       if (!PREVIEW) this.emitFile({ type: "asset", fileName: "sitemap.xml", source: sitemapXml() });
@@ -30,10 +32,7 @@ export default defineConfig({
     emptyOutDir: true,
     assetsDir: "assets",
     rollupOptions: {
-      input: {
-        en: resolve(here, "index.html"),
-        pl: resolve(here, "pl/index.html"),
-      },
+      input: Object.fromEntries(PAGE_LIST.map((p) => [`${p.id}-${p.lang}`, resolve(here, p.file)])),
     },
   },
 });

@@ -9,7 +9,7 @@ import { createServer } from "vite";
 const here = dirname(fileURLToPath(import.meta.url));
 
 const root = resolve(here, "..");
-const pages = { en: "dist/index.html", pl: "dist/pl/index.html" };
+import { PAGE_LIST } from "../src/pages.js";
 
 const vite = await createServer({
   root,
@@ -20,11 +20,12 @@ const vite = await createServer({
 
 try {
   const { render } = await vite.ssrLoadModule("/src/entry-server.jsx");
-  for (const [lang, file] of Object.entries(pages)) {
+  for (const { id, lang, file: name } of PAGE_LIST) {
+    const file = `dist/${name}`;
     const path = resolve(root, file);
     const html = await readFile(path, "utf8");
     if (!html.includes("<!--app-->")) throw new Error(`${file}: <!--app--> placeholder missing`);
-    await writeFile(path, html.replace("<!--app-->", render(lang)));
+    await writeFile(path, html.replace("<!--app-->", render(lang, id)));
     console.log(`prerendered ${file}`);
   }
 } finally {

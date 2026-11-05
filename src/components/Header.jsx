@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import { LINKS } from "../links.js";
 import { strings } from "../i18n.js";
+import { pagePath } from "../pages.js";
+import { count, useCart, cart } from "../shop/cart.js";
 import Icon from "./Icon.jsx";
 
 const LANG_NAMES = { en: "English", pl: "Polski" };
 const SECTION_IDS = ["home", "band", "listen", "tour", "gallery", "contact"];
 
-function LangSwitch({ lang, t }) {
+function LangSwitch({ lang, t, page }) {
   return (
     <nav className="lang" aria-label={t.langLabel}>
       {Object.keys(strings).map((code, i) => (
@@ -17,7 +19,7 @@ function LangSwitch({ lang, t }) {
             </span>
           )}
           <a
-            href={strings[code].home}
+            href={pagePath(page, code)}
             hrefLang={code}
             lang={code}
             title={LANG_NAMES[code]}
@@ -48,13 +50,18 @@ function Socials({ t }) {
 const nameLabel = (name) =>
   ({ spotify: "Spotify", appleMusic: "Apple Music", facebook: "Facebook", instagram: "Instagram", youtube: "YouTube" })[name];
 
-export default function Header({ t, lang }) {
+export default function Header({ t, lang, page = "home" }) {
+  const cartState = useCart();
+  const inCart = count(cartState);
+  const home = page === "home";
+  const base = home ? "" : t.home;
   const [active, setActive] = useState("home");
   const [open, setOpen] = useState(false);
 
   // Highlight the menu item of the section being read: the last section whose top has passed
   // 40% of the screen height; at the very bottom of the page it is always Contact.
   useEffect(() => {
+    if (!home) return undefined;
     let frame = 0;
     const update = () => {
       frame = 0;
@@ -77,7 +84,7 @@ export default function Header({ t, lang }) {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
     };
-  }, []);
+  }, [home]);
 
   useEffect(() => {
     if (!open) return undefined;
@@ -94,18 +101,18 @@ export default function Header({ t, lang }) {
   const items = [
     { id: "band", label: t.nav.band },
     { id: "listen", label: t.nav.listen },
-    { id: "shop", label: t.nav.shop, href: LINKS.bandcamp, external: true },
+    { id: "shop", label: t.nav.shop, href: t.shop.path },
     { id: "tour", label: t.nav.tour },
     { id: "gallery", label: t.nav.gallery },
   ];
 
   const link = (item, extra = {}) =>
-    item.external ? (
-      <a key={item.id} href={item.href} target="_blank" rel="noopener noreferrer" {...extra}>
+    item.href ? (
+      <a key={item.id} href={item.href} className={page === "shop" ? "is-here" : undefined} {...extra}>
         {item.label}
       </a>
     ) : (
-      <a key={item.id} href={`#${item.id}`} className={active === item.id ? "is-here" : undefined} {...extra}>
+      <a key={item.id} href={`${base}#${item.id}`} className={home && active === item.id ? "is-here" : undefined} {...extra}>
         {item.label}
       </a>
     );
@@ -114,14 +121,14 @@ export default function Header({ t, lang }) {
     <>
       <header className="top">
         <div className="top-left">
-          <a className="brand pill" href="#home" aria-label={`WHITEWATER — ${t.nav.home}`}>
+          <a className="brand pill" href={`${base}#home`} aria-label={`WHITEWATER — ${t.nav.home}`}>
             <img src="/w-mark.png" width="228" height="236" alt="" />
             <span className="brand-name">
               WHITE<em>WATER</em>
             </span>
           </a>
           <span className="top-lang">
-            <LangSwitch lang={lang} t={t} />
+            <LangSwitch lang={lang} t={t} page={page} />
           </span>
         </div>
 
@@ -132,6 +139,12 @@ export default function Header({ t, lang }) {
           <a className={`pill pill-dashed top-contact${active === "contact" ? " is-here" : ""}`} href="#contact">
             {t.nav.contact}
           </a>
+          {page === "shop" && (
+            <button type="button" className="pill pill-solid cart-btn" onClick={cart.open}>
+              {t.shop.inCart}
+              {inCart > 0 && <span className="cart-count">{inCart}</span>}
+            </button>
+          )}
           <Socials t={t} />
           <button
             type="button"
@@ -152,12 +165,17 @@ export default function Header({ t, lang }) {
           </button>
           <nav aria-label={t.nav.label}>
             {[{ id: "home", label: t.nav.home }, ...items].map((item) => link(item, { onClick: close }))}
+            {page === "shop" && (
+              <button type="button" className="mobile-cart" onClick={() => { close(); cart.open(); }}>
+                {t.shop.inCart}{inCart > 0 ? ` (${inCart})` : ""}
+              </button>
+            )}
             <a href="#contact" className={active === "contact" ? "is-here" : undefined} onClick={close}>
               {t.nav.contact}
             </a>
           </nav>
           <Socials t={t} />
-          <LangSwitch lang={lang} t={t} />
+          <LangSwitch lang={lang} t={t} page={page} />
         </div>
       )}
     </>

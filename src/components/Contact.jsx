@@ -1,18 +1,20 @@
 import { LINKS } from "../links.js";
 import { strings } from "../i18n.js";
 import { CONSENT_EVENT } from "../analytics.js";
+import { pagePath } from "../pages.js";
 
-export default function Contact({ t, lang }) {
+export default function Contact({ t, lang, page = "home" }) {
+  const base = page === "home" ? "" : t.home;
   const rows = [
     { name: LINKS.email, href: `mailto:${LINKS.email}`, external: false, className: "row-mail" },
     { name: "Instagram", href: LINKS.instagram, external: true },
     { name: "Facebook", href: LINKS.facebook, external: true },
   ];
   const nav = [
-    ["#band", t.nav.band],
-    ["#listen", t.nav.listen],
-    ["#tour", t.nav.tour],
-    ["#gallery", t.nav.gallery],
+    [`${base}#band`, t.nav.band],
+    [`${base}#listen`, t.nav.listen],
+    [`${base}#tour`, t.nav.tour],
+    [`${base}#gallery`, t.nav.gallery],
   ];
 
   return (
@@ -34,7 +36,7 @@ export default function Contact({ t, lang }) {
       </div>
 
       <aside className="contact-side">
-        <a className="brand-line" href="#home">
+        <a className="brand-line" href={`${base}#home`}>
           <img src="/w-mark.png" width="228" height="236" alt="" />
           <span>
             WHITE<em>WATER</em>
@@ -47,15 +49,18 @@ export default function Contact({ t, lang }) {
             </li>
           ))}
           <li>
-            <a href={LINKS.bandcamp} target="_blank" rel="noopener noreferrer">
-              {t.nav.shop} ↗
-            </a>
+            <a href={t.shop.path}>{t.nav.shop}</a>
           </li>
+          {["terms", "privacy", "returns"].map((id) => (
+            <li key={id}>
+              <a href={pagePath(id, lang)}>{t.shop.legalNav[id]}</a>
+            </li>
+          ))}
           {Object.keys(strings).map((code) => (
             <li key={code}>
               <a
                 className={code === lang ? "is-here" : undefined}
-                href={strings[code].home}
+                href={pagePath(page, code)}
                 hrefLang={code}
                 lang={code}
                 aria-current={code === lang ? "page" : undefined}
@@ -64,9 +69,6 @@ export default function Contact({ t, lang }) {
               </a>
             </li>
           ))}
-          <li>
-            <a href={t.consent.privacyUrl}>{t.consent.privacy}</a>
-          </li>
           <li>
             <button type="button" className="foot-btn" onClick={() => window.dispatchEvent(new Event(CONSENT_EVENT))}>
               {t.consent.settings}
