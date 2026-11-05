@@ -110,7 +110,22 @@ function jsonLd(lang) {
         "@id": `${SITE}/#website`,
         url: SITE + "/",
         name: "WHITEWATER",
+        alternateName: ["Whitewater", "WHITEWATER band"],
         inLanguage: ["en", "pl"],
+        publisher: { "@id": `${SITE}/#band` },
+      },
+      {
+        // The page's main image (Afterlife), so search and link previews don't pick another photo.
+        "@type": "WebPage",
+        "@id": `${url}#webpage`,
+        url,
+        name: p.title,
+        description: p.description,
+        inLanguage: lang,
+        isPartOf: { "@id": `${SITE}/#website` },
+        about: { "@id": `${SITE}/#band` },
+        primaryImageOfPage: { "@type": "ImageObject", url: `${SITE}${p.ogImage}`, width: 1200, height: 630 },
+        image: `${SITE}${p.ogImage}`,
       },
     ],
   };
