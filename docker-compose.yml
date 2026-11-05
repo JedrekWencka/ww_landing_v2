@@ -1,12 +1,18 @@
-# Preview of the redesign: a second nginx next to the live site, on its own port.
-# Live site (ww-landing) keeps ports 80/443 untouched.
+# The same file in every landing-page repo. site.sh copies it to /opt/<name>/ on the server
+# and writes the .env next to it (container name, the edge network, the preview port).
+# Production containers have no public port: ww-landing (ports 80/443) proxies the domain
+# to them by container name over its Docker network.
 services:
   web:
     image: nginx:1.27-alpine
-    container_name: ww-preview
+    container_name: ${CONTAINER:?set by site.sh}
     restart: unless-stopped
-    ports:
-      - "8081:80"
     volumes:
-      - ./dist:/usr/share/nginx/html:ro
+      - ./html:/usr/share/nginx/html:ro
       - ./nginx:/etc/nginx/conf.d:ro
+    networks: [edge]
+
+networks:
+  edge:
+    external: true
+    name: ${WW_NETWORK:-ww_landing_default}
